@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block page_title %}Thank you!{% endblock %}
+
+{% block content %}
+    <style>
+        .thank-you-body {
+            background-color: #f2f2f2;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .thank-you-container {
+            text-align: center;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        .success-message {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .thank-you-description {
+            color: #555;
+            margin-bottom: 15px;
+        }
+    </style>
+
+    <div class="thank-you-body">
+        <div class="thank-you-container">
+            <h2 class="success-message">Success!</h2>
+            <p class="thank-you-description">You are now registered</p>
+            <a href="{% url 'customer_login' %}" class="register-button">Login</a>
+        </div>
+    </div>
+{% endblock %}

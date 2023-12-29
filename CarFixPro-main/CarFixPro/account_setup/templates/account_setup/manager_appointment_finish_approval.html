@@ -1,0 +1,56 @@
+{% extends "base_after_logging_manager.html" %}
+
+{% block page_title %}Manager Completed Appointment Approvals{% endblock %}
+
+{% block content %}
+    <p>Welcome, {{ request.session.manager_email }}. Here is the list of your completed appointment approvals:</p>
+
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Appointment ID</th>
+                <th>Customer Email</th>
+                <th>Service Details</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments_for_manager %}
+                <tr>
+                    <td>{{ appointment.appointment_id }}</td>
+                    <td>{{ appointment.customer_email }}</td>
+                    <td>{{ appointment.service_details }}</td>
+                    <td>
+                        <form method="post" action="{% url 'manager_appointment_finish_approval' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="appointment_id" value="{{ appointment.appointment_id }}">
+                            <button type="submit">Approve</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

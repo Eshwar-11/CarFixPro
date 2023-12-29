@@ -1,0 +1,50 @@
+{% extends "base_after_logging.html" %}
+
+{% block page_title %}Customer Dashboard{% endblock %}
+
+{% block content %}
+    <style>
+        .dashboard-body {
+            background-color: #f2f2f2;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .dashboard-container {
+            text-align: center;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        .welcome-message {
+            font-size: 1.25em;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .dashboard-description {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .dashboard-description:last-child {
+            margin-bottom: 20px;
+        }
+    </style>
+
+    <div class="dashboard-body">
+        <div class="dashboard-container">
+            <h4 class="welcome-message">Welcome, {{ request.session.user_email }}!</h4>
+            <p class="dashboard-description"><i>** Navigate to the Vehicle Details tab to add or update your vehicle details.</i></p>
+            <p class="dashboard-description"><i>** Select the Appointments tab to book or view your service appointments.</i></p>
+        </div>
+    </div>
+{% endblock %}

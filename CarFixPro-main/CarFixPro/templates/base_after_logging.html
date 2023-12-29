@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block page_title %}CarFixPro{% endblock %}</title>
+
+  <!-- Add the font link for Open Sans -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap">
+
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif; /* Use Open Sans font */
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      background-color: navy;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    li {
+      float: left;
+    }
+
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    li a:hover {
+      background-color: #001f3f; /* Darker navy color on hover */
+    }
+
+    .dropdown {
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: navy;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      color: white;
+      padding: 12px 16px;
+      display: block;
+      text-decoration: none;
+      text-align: left;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #001f3f; /* Darker navy color on hover */
+    }
+
+    /* Add the following CSS for the logout button */
+    li.logout {
+      float: right;
+    }
+  </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'customer_dashboard' %}">Home</a></li>
+            <li class="dropdown">
+                <a href="#">Vehicle Details</a>
+                <ul class="dropdown-content">
+                    <li><a href="{% url 'view_vehicle' %}">View Vehicle Details</a></li>
+                    <li><a href="{% url 'add_vehicle' %}">Add Vehicle Details</a></li>
+                    <li><a href="{% url 'remove_vehicle' %}">Remove Vehicle Details</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#">Appointments</a>
+                <ul class="dropdown-content">
+                    <li><a href="{% url 'book_appointment' %}">Book Appointment</a></li>
+                    <li><a href="{% url 'view_appointments' %}">View Appointments</a></li>
+                    <li><a href="{% url 'delete_appointment' %}">Delete Appointment</a></li>
+                </ul>
+            </li>
+            <!-- Add the logout button -->
+            <li class="logout"><a href="{% url 'logout_customer' %}">Logout</a></li>
+        </ul>
+    </nav>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

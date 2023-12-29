@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block page_title %}Login{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            flex-direction: column; /* Center elements in a column */
+        }
+
+        .carfixpro-heading {
+            font-size: 3em; /* Adjust the font size as needed */
+            color: navy;
+            margin-bottom: 20px; /* Add some space below the heading */
+        }
+
+        .login-container {
+            text-align: center;
+        }
+
+        .login-heading {
+            color: navy;
+        }
+
+        .login-form {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        .form-control {
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button.login-button {
+            background-color: navy;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button.login-button:hover {
+            background-color: #001f3f;
+        }
+    </style>
+
+    <div class="login-container">
+        <h1 class="carfixpro-heading">CarFixPro</h1>
+        <h2 class="login-heading">Manager Login</h2>
+        <form method="POST" class="login-form">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-control {% if field.errors %}errors{% endif %}">
+                    {{ field.label_tag|safe }}
+                    {{ field }}
+                    {{ field.errors }}
+                </div>
+            {% endfor %}
+            <button type="submit" class="login-button">Submit</button>
+        </form>
+    </div>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"> <!-- Import Open Sans font -->
+{% endblock %}

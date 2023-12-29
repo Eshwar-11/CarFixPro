@@ -1,0 +1,48 @@
+{% extends "base_after_logging.html" %}
+
+{% block page_title %}View Vehicle Details{% endblock %}
+
+{% block content %}
+    <p>Welcome, {{ request.session.user_email }}. Here is a list of your vehicles:</p>
+    
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+
+    <table>
+        <thead>
+            <tr>
+                <th>VIN</th>
+                <th>Manufacturer</th>
+                <th>Model</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vehicle in vehicles %}
+                <tr>
+                    <td>{{ vehicle.vin }}</td>
+                    <td>{{ vehicle.mfg_company }}</td>
+                    <td>{{ vehicle.model }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

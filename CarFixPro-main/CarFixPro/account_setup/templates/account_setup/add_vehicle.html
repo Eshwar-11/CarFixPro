@@ -1,0 +1,66 @@
+{% extends "base_after_logging.html" %}
+
+{% block page_title %}
+    Add Vehicle
+{% endblock %}
+
+{% block content %}
+    <style>
+        /* Styles for form container */
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Styles for form controls */
+        .form-control {
+            margin-bottom: 20px;
+        }
+
+        /* Styles for form controls with errors */
+        .has-errors {
+            border: 1px solid #ff0000; /* Red border for fields with errors */
+        }
+
+        /* Styles for error messages */
+        .error-message {
+            color: #ff0000; /* Red color for error messages */
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        /* Styles for submit button */
+        .submit-button {
+            background-color: #4caf50; /* Green background color */
+            color: #fff; /* White text color */
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit-button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+    </style>
+
+    <div class="form-container">
+        <h2>Add Vehicle</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-control {% if field.errors %}has-errors{% endif %}">
+                    <label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+                    <br>
+                    {{ field }}
+                    <div class="error-message">{{ field.errors }}</div>
+                </div>
+            {% endfor %}
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "base_after_logging_technician.html" %}
+
+{% block page_title %}Profile details{% endblock %}
+
+{% block content %}
+    <p>Welcome, {{ request.session.technician_email }}, your profile details are as follows:</p>
+
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>SSN</th>
+                <td>{{ technician.SSN }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ technician.fname }} {{ technician.lname }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ technician.address }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ technician.phone }}</td>
+            </tr>
+            <tr>
+                <th>Account Number</th>
+                <td>{{ technician.acc_number }}</td>
+            </tr>
+            <tr>
+                <th>Hire Date</th>
+                <td>{{ technician.hire_date }}</td>
+            </tr>
+            <tr>
+                <th>Manager Email</th>
+                <td>{{ technician.mngr.email_id }}</td>
+            </tr>
+            <tr>
+                <th>Location</th>
+                <td>{{ technician.location }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

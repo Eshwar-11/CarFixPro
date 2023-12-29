@@ -1,0 +1,57 @@
+{% extends "base_after_logging_technician.html" %}
+
+{% block page_title %}Technician Pending Approvals{% endblock %}
+
+{% block content %}
+    <p>Welcome, {{ request.session.technician_email }}. Here is the list of pending appointments:</p>
+
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Appointment ID</th>
+                <th>Service Detail</th>
+                <th>Vehicle Type</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments_for_technician %}
+                <tr>
+                    <td>{{ appointment.appointment.appointment_id }}</td>
+                    <td>{{ appointment.service_detail }}</td>
+                    <td>{{ appointment.appointment.vehicletype }}</td>
+                    <td>
+                        <form method="post" action="{% url 'technician_pending_appointments' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="appointment" value="{{ appointment.appointment.appointment_id }}">
+                            <input type="hidden" name="service_detail" value="{{ appointment.service_detail }}">
+                            <button type="submit">Approve</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

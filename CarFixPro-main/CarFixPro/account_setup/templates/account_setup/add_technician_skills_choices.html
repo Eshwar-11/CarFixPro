@@ -1,0 +1,57 @@
+{% extends "base_after_logging_manager.html" %}
+
+{% block page_title %}Add Technician Skills{% endblock %}
+
+{% block content %}
+    <head>
+        <style>
+            /* CSS styles go here */
+
+            .form-container {
+                max-width: 400px;
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .form-control {
+                margin-bottom: 15px;
+                display: flex;
+                flex-direction: column; /* Placing the label and input in a column */
+            }
+
+            .errors {
+                color: #ff0000; /* Red color for error messages */
+            }
+
+            button {
+                background-color: #4caf50; /* Green color for the submit button */
+                color: #fff;
+                padding: 10px 15px;
+                border: none;
+                cursor: pointer;
+                margin-top: 15px; /* Adjust the margin as needed */
+            }
+
+            button:hover {
+                background-color: #45a049; /* Darker green on hover */
+            }
+        </style>
+    </head>
+
+    <div class="form-container">
+        <h2>Add Technician Skills</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-control {% if field.errors %}errors{% endif %}">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {{ field.errors }}
+                </div>
+            {% endfor %}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+{% endblock %}
